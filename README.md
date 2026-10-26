@@ -19,7 +19,7 @@ O **Eventify** é uma aplicação web para criar convites digitais personalizado
 
 ## 🚀 Como executar
 
-1. Clone o repositório.
+1. Baixe o zip.
 2. Abra a pasta do projeto.
 3. Execute o arquivo `index.html` no navegador.
 
