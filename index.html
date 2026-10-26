@@ -1,0 +1,278 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Crie convites incríveis para seus eventos com Eventify.">
+  <title>Eventify | Criador de Convites</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <header class="topbar">
+    <a href="#" class="brand">
+      <span class="logo">▦</span>
+      <span>Eventify</span>
+    </a>
+
+    <span class="divider"></span>
+    <p class="tagline">Crie convites incríveis para seus eventos</p>
+
+    <button id="themeToggle" class="theme-toggle" type="button" aria-label="Alternar aparência">
+      ☼ <span class="toggle-track"><span></span></span> ☾
+    </button>
+  </header>
+
+  <main class="workspace">
+
+    <section class="panel editor">
+      <form id="eventForm" novalidate>
+
+        <div class="section-heading">
+          <span class="step">1</span>
+          <div>
+            <h1>Informações do evento</h1>
+            <p>Preencha os dados principais do seu evento.</p>
+          </div>
+        </div>
+
+        <div class="field full">
+          <label for="title">Título do evento *</label>
+          <input id="title" type="text" placeholder="Ex.: Workshop de Desenvolvimento Web" required>
+          <small class="error"></small>
+        </div>
+
+        <div class="field-grid">
+          <div class="field">
+            <label for="startDate">Data de início *</label>
+            <input id="startDate" type="date" required>
+            <small class="error"></small>
+          </div>
+
+          <div class="field">
+            <label for="endDate">Data de fim *</label>
+            <input id="endDate" type="date" required>
+            <small class="error"></small>
+          </div>
+        </div>
+
+        <fieldset class="field">
+          <legend>Tipo do evento *</legend>
+          <div class="choice-row">
+            <label class="choice selected">
+              <input type="radio" name="eventType" value="presencial" checked>
+              <span>⌖</span> Presencial
+            </label>
+
+            <label class="choice">
+              <input type="radio" name="eventType" value="online">
+              <span>▣</span> Online
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="field full" id="locationField">
+          <label for="location">Local *</label>
+          <input id="location" type="text" placeholder="Endereço do evento" required>
+          <small class="error"></small>
+        </div>
+
+        <div class="field full">
+          <label for="description">Descrição do evento *</label>
+          <textarea id="description" rows="3" placeholder="Conte um pouco sobre seu evento..." required></textarea>
+          <small class="error"></small>
+        </div>
+
+        <div class="field-grid">
+          <div class="field">
+            <label for="email">E-mail de contato *</label>
+            <input id="email" type="email" placeholder="contato@evento.com" required>
+            <small class="error"></small>
+          </div>
+
+          <div class="field">
+            <label for="phone">Telefone de contato *</label>
+            <input id="phone" type="tel" placeholder="(61) 99999-9999" required>
+            <small class="error"></small>
+          </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-heading">
+          <span class="step">2</span>
+          <div>
+            <h2>Personalização do convite</h2>
+            <p>Deixe seu convite com a sua cara.</p>
+          </div>
+        </div>
+
+        <div class="custom-grid">
+          <div class="field">
+            <label>Cor principal *</label>
+            <div class="colors">
+              <button type="button" class="color active" data-color="#42e6a4" style="--color:#42e6a4" aria-label="Verde"></button>
+              <button type="button" class="color" data-color="#9867ff" style="--color:#9867ff" aria-label="Roxo"></button>
+              <button type="button" class="color" data-color="#3285ff" style="--color:#3285ff" aria-label="Azul"></button>
+              <button type="button" class="color" data-color="#ff9e50" style="--color:#ff9e50" aria-label="Laranja"></button>
+              <button type="button" class="color" data-color="#ef4f91" style="--color:#ef4f91" aria-label="Rosa"></button>
+              <button type="button" class="color" data-color="#8298bd" style="--color:#8298bd" aria-label="Cinza azulado"></button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Tema *</label>
+            <div class="themes">
+              <button type="button" class="theme-option active" data-theme="moderno">
+                <span class="theme-image modern"></span>
+                Moderno
+              </button>
+              <button type="button" class="theme-option" data-theme="minimalista">
+                <span class="theme-image minimal"></span>
+                Minimalista
+              </button>
+              <button type="button" class="theme-option" data-theme="elegante">
+                <span class="theme-image elegant"></span>
+                Elegante
+              </button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="cover">Imagem de capa</label>
+            <label for="cover" class="upload">
+              <span class="upload-icon">⇧</span>
+              <span id="uploadText">Clique para enviar uma imagem</span>
+              <small>PNG, JPG ou WEBP · Máx. 5 MB</small>
+            </label>
+            <input id="cover" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+            <small class="error" id="coverError"></small>
+          </div>
+
+          <div class="field">
+            <label>Estilo do convite</label>
+            <div class="styles">
+              <button type="button" class="style-option active" data-mode="light">☼ Claro</button>
+              <button type="button" class="style-option" data-mode="dark">☾ Escuro</button>
+            </div>
+          </div>
+        </div>
+
+        <button class="generate" type="submit">
+          <span>✧</span> Gerar convite
+        </button>
+
+        <p id="formMessage" role="status"></p>
+      </form>
+    </section>
+
+    <section class="panel preview-panel">
+      <div class="tabs">
+        <button type="button" class="tab active" data-view="preview">◎ Pré-visualização</button>
+        <button type="button" class="tab" data-view="code">&lt;/&gt; Código HTML</button>
+      </div>
+
+      <div class="preview-layout">
+        <div class="preview-main">
+
+          <article id="invitation" class="invitation theme-moderno">
+            <div class="invite-cover" id="inviteCover">
+              <div class="cover-overlay"></div>
+
+              <div class="invite-brand">
+                <span class="logo">▦</span> Eventify
+              </div>
+
+              <div class="cover-copy">
+                <p class="eyebrow">CONVITE ESPECIAL</p>
+                <h2 id="previewTitle">SEU EVENTO<br><span>COMEÇA AQUI</span></h2>
+                <p id="previewSubtitle">Uma experiência especial espera por você!</p>
+              </div>
+            </div>
+
+            <div class="invite-body">
+              <div class="info-grid">
+                <span class="info-icon">▦</span>
+                <div>
+                  <strong id="previewDate">Data do evento</strong>
+                  <span id="previewTime">Confira os detalhes</span>
+                </div>
+
+                <span class="info-icon">⌖</span>
+                <div>
+                  <strong id="previewLocation">Local do evento</strong>
+                  <span id="previewCity">Esperamos por você!</span>
+                </div>
+              </div>
+
+              <div class="description-row">
+                <span class="info-icon">▤</span>
+                <p id="previewDescription">A descrição do evento aparecerá aqui.</p>
+              </div>
+
+              <div class="contact-row">
+                <div>
+                  <span class="info-icon">✉</span>
+                  <span id="previewEmail">contato@evento.com</span>
+                </div>
+                <div>
+                  <span class="info-icon">♧</span>
+                  <span id="previewPhone">(61) 99999-9999</span>
+                </div>
+              </div>
+
+              <button type="button" class="rsvp" id="confirmButton">
+                ▦ &nbsp; Convite gerado com sucesso!
+              </button>
+            </div>
+
+            <footer class="invite-footer">
+              <p>GRANDES IDEIAS<br>COMEÇAM COM<br>BOAS CONEXÕES</p>
+              <span></span>
+            </footer>
+          </article>
+
+          <div id="codePanel" class="code-panel" hidden>
+            <div class="code-header">
+              <span>Código HTML do convite</span>
+              <button type="button" id="copyCode">Copiar código</button>
+            </div>
+            <pre><code id="htmlCode"></code></pre>
+          </div>
+
+        </div>
+
+        <aside class="feature-rail">
+          <div class="feature">
+            <span>◉</span>
+            <div><strong>Cor principal</strong><p>Personalize com sua cor favorita</p></div>
+          </div>
+
+          <div class="feature">
+            <span>♙</span>
+            <div><strong>Temas</strong><p>Escolha o visual que mais combina</p></div>
+          </div>
+
+          <div class="feature">
+            <span>▧</span>
+            <div><strong>Imagem de capa</strong><p>Adicione uma imagem para o seu convite</p></div>
+          </div>
+
+          <div class="feature">
+            <span>◴</span>
+            <div><strong>Modo claro/escuro</strong><p>Altere o estilo com um clique</p></div>
+          </div>
+
+          <p class="signature">Seu evento,<br>do seu jeito!</p>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status"></div>
+</body>
+</html>
